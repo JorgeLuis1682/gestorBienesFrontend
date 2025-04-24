@@ -5,19 +5,20 @@ import React from "react";
 import MDBox from "components/MDBox";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-
+import icon from "assets/images/logos/alcaldia_favicon.png";
+import Sidenav from "examples/Sidenav";
+import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 function BienesView(){
     return(
-        <Card sx={{ height: "100%" }}>
-            <DefaultNavbar />
-            <PageLayout title="Bienes" breadcrumbs={[{ name: "Bienes", href: "/bienes" }]}>
+        <DashboardLayout>
+        <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                 <div className="Bienes">
                     <h1>Bienes</h1>
                     <p>Esta es la página de Bienes.</p>
                 </div>
-            </PageLayout>
         </Card>
+        </DashboardLayout>
     );
 }
 
