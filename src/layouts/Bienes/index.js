@@ -308,15 +308,15 @@ function BienesView() {
                             }}>
                                 <FormGroup>
                                     <FormControlLabel control={<Checkbox defaultChecked color="primary"/>} label="Inspeccion"/>
-                                    <FormControlLabel control={<Checkbox color="primary"/>} label="Innoperativo"/>
-                                    <FormControlLabel control={<Checkbox color="primary"/>} label="En reparación"/>
-                                    <FormControlLabel control={<Checkbox color="primary"/>} label="Dado de baja"/>
+                                    <FormControlLabel control={<Checkbox color="primary"/>} label="Inoperativo"/>
+                                    <FormControlLabel control={<Checkbox color="primary"/>} label="Obsoleto"/>
+                                    <FormControlLabel control={<Checkbox color="primary"/>} label="Espera factura"/>
                                 </FormGroup>
                                 
                                 <FormGroup>
-                                    <FormControlLabel control={<Checkbox color="primary"/>} label="Asi"/>
-                                    <FormControlLabel control={<Checkbox color="primary"/>} label="dssa"/>
-                                    <FormControlLabel control={<Checkbox color="primary"/>} label="baja"/>
+                                    <FormControlLabel control={<Checkbox color="primary"/>} label="Faltante"/>
+                                    <FormControlLabel control={<Checkbox color="primary"/>} label="Deteriorado"/>
+                                    <FormControlLabel control={<Checkbox color="primary"/>} label="Robado"/>
                                 </FormGroup>
                             </Box>
                         </Card>
