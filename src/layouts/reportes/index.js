@@ -19,7 +19,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import TextField from '@mui/material';
+import TextField from '@mui/material/TextField';
 function Reportes() {
   const [reportType, setReportType] = useState('');
   const [format, setFormat] = useState('');
