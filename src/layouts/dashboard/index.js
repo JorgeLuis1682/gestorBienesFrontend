@@ -14,29 +14,81 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
 // Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
-import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Footer from 'examples/Footer';
+import ReportsBarChart from 'examples/Charts/BarCharts/ReportsBarChart';
+import ReportsLineChart from 'examples/Charts/LineCharts/ReportsLineChart';
+import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatisticsCard';
 
 // Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
+import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData';
 
 // Dashboard components
-import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+import Projects from 'layouts/dashboard/components/Projects';
+import OrdersOverview from 'layouts/dashboard/components/OrdersOverview';
+
+import { useEffect, useState } from 'react';
+import axiosInstance from '../../config/axiosConfig'; // Asegúrate de que la ruta sea correcta
 
 function Dashboard() {
-  const { sales, tasks } = reportsLineChartData;
+  const [bienesData, setBienesData] = useState([]);
+  const [chartData, setChartData] = useState({
+    sales: { labels: [], datasets: [] },
+    tasks: { labels: [], datasets: [] },
+  });
+
+  useEffect(() => {
+    const fetchBienes = async () => {
+      try {
+        const response = await axiosInstance.get('/api/bienes');
+        console.log('Bienes data:', response.data);
+        setBienesData(response.data);
+
+        // Actualizar datos de los gráficos con la información de bienes
+        const labels = response.data.map((item) => item.nombre); // Ejemplo: nombres de bienes
+        const values = response.data.map((item) => item.valor); // Ejemplo: valores de bienes
+
+        setChartData({
+          sales: {
+            labels,
+            datasets: [
+              {
+                label: 'Valores de Bienes',
+                data: values,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+              },
+            ],
+          },
+          tasks: {
+            labels,
+            datasets: [
+              {
+                label: 'Tareas relacionadas',
+                data: values.map((v) => v / 2), // Ejemplo: datos derivados
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1,
+              },
+            ],
+          },
+        });
+      } catch (error) {
+        console.error('Error fetching bienes data:', error);
+      }
+    };
+
+    fetchBienes();
+  }, []);
 
   return (
     <DashboardLayout>
@@ -51,9 +103,9 @@ function Dashboard() {
                 title="Bookings"
                 count={281}
                 percentage={{
-                  color: "success",
-                  amount: "+55%",
-                  label: "than lask week",
+                  color: 'success',
+                  amount: '+55%',
+                  label: 'than lask week',
                 }}
               />
             </MDBox>
@@ -65,9 +117,9 @@ function Dashboard() {
                 title="Today's Users"
                 count="2,300"
                 percentage={{
-                  color: "success",
-                  amount: "+3%",
-                  label: "than last month",
+                  color: 'success',
+                  amount: '+3%',
+                  label: 'than last month',
                 }}
               />
             </MDBox>
@@ -80,9 +132,9 @@ function Dashboard() {
                 title="Revenue"
                 count="34k"
                 percentage={{
-                  color: "success",
-                  amount: "+1%",
-                  label: "than yesterday",
+                  color: 'success',
+                  amount: '+1%',
+                  label: 'than yesterday',
                 }}
               />
             </MDBox>
@@ -95,9 +147,9 @@ function Dashboard() {
                 title="Followers"
                 count="+91"
                 percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "Just updated",
+                  color: 'success',
+                  amount: '',
+                  label: 'Just updated',
                 }}
               />
             </MDBox>
@@ -109,10 +161,10 @@ function Dashboard() {
               <MDBox mb={3}>
                 <ReportsBarChart
                   color="info"
-                  title="website views"
-                  description="Last Campaign Performance"
-                  date="campaign sent 2 days ago"
-                  chart={reportsBarChartData}
+                  title="Valores de Bienes"
+                  description="Información obtenida de bienes"
+                  date="actualizado recientemente"
+                  chart={chartData.sales}
                 />
               </MDBox>
             </Grid>
@@ -120,14 +172,10 @@ function Dashboard() {
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="success"
-                  title="daily sales"
-                  description={
-                    <>
-                      (<strong>+15%</strong>) increase in today sales.
-                    </>
-                  }
-                  date="updated 4 min ago"
-                  chart={sales}
+                  title="Tareas relacionadas"
+                  description="Datos derivados de bienes"
+                  date="actualizado recientemente"
+                  chart={chartData.tasks}
                 />
               </MDBox>
             </Grid>
@@ -138,7 +186,7 @@ function Dashboard() {
                   title="completed tasks"
                   description="Last Campaign Performance"
                   date="just updated"
-                  chart={tasks}
+                  chart={reportsLineChartData.tasks}
                 />
               </MDBox>
             </Grid>

@@ -1,0 +1,18 @@
+# Configuración para Cloudflare Workers y Pages
+
+name = "gestor-bienes-frontend"
+type = "javascript"
+account_id = "tu_account_id"
+workers_dev = true
+
+[build]
+command = "npm run build"
+upload_format = "modules"
+upload_dir = "./dist"
+
+[pages]
+pages_build_output_dir = "build"
+
+[env.production]
+route = "gestor-bienes.example.com/*"
+zone_id = "tu_zone_id"

@@ -2,196 +2,289 @@
 =========================================================
 * Material Dashboard 2 React - v2.2.0
 =========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+import { useState } from 'react';
+import Card from '@mui/material/Card';
+import {
+  Button,
+  TextField,
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
-// @mui material components
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-
-// Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDAlert from "components/MDAlert";
-import MDButton from "components/MDButton";
-import MDSnackbar from "components/MDSnackbar";
-
-// Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-
-function Notifications() {
-  const [successSB, setSuccessSB] = useState(false);
-  const [infoSB, setInfoSB] = useState(false);
-  const [warningSB, setWarningSB] = useState(false);
-  const [errorSB, setErrorSB] = useState(false);
-
-  const openSuccessSB = () => setSuccessSB(true);
-  const closeSuccessSB = () => setSuccessSB(false);
-  const openInfoSB = () => setInfoSB(true);
-  const closeInfoSB = () => setInfoSB(false);
-  const openWarningSB = () => setWarningSB(true);
-  const closeWarningSB = () => setWarningSB(false);
-  const openErrorSB = () => setErrorSB(true);
-  const closeErrorSB = () => setErrorSB(false);
-
-  const alertContent = (name) => (
-    <MDTypography variant="body2" color="white">
-      A simple {name} alert with{" "}
-      <MDTypography component="a" href="#" variant="body2" fontWeight="medium" color="white">
-        an example link
-      </MDTypography>
-      . Give it a click if you like.
-    </MDTypography>
-  );
-
-  const renderSuccessSB = (
-    <MDSnackbar
-      color="success"
-      icon="check"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
-      open={successSB}
-      onClose={closeSuccessSB}
-      close={closeSuccessSB}
-      bgWhite
-    />
-  );
-
-  const renderInfoSB = (
-    <MDSnackbar
-      icon="notifications"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
-      open={infoSB}
-      onClose={closeInfoSB}
-      close={closeInfoSB}
-    />
-  );
-
-  const renderWarningSB = (
-    <MDSnackbar
-      color="warning"
-      icon="star"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
-      open={warningSB}
-      onClose={closeWarningSB}
-      close={closeWarningSB}
-      bgWhite
-    />
-  );
-
-  const renderErrorSB = (
-    <MDSnackbar
-      color="error"
-      icon="warning"
-      title="Material Dashboard"
-      content="Hello, world! This is a notification message"
-      dateTime="11 mins ago"
-      open={errorSB}
-      onClose={closeErrorSB}
-      close={closeErrorSB}
-      bgWhite
-    />
-  );
+function Transferencias() {
+  const [openOrigen, setOpenOrigen] = useState(false);
+  const [openDestino, setOpenDestino] = useState(false);
+  const [openUnidadDestino, setOpenUnidadDestino] = useState(false);
+  const [openAmbienteDestino, setOpenAmbienteDestino] = useState(false);
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
       <MDBox mt={6} mb={3}>
-        <Grid container spacing={3} justifyContent="center">
-          <Grid item xs={12} lg={8}>
-            <Card>
-              <MDBox p={2}>
-                <MDTypography variant="h5">Alerts</MDTypography>
-              </MDBox>
-              <MDBox pt={2} px={2}>
-                <MDAlert color="primary" dismissible>
-                  {alertContent("primary")}
-                </MDAlert>
-                <MDAlert color="secondary" dismissible>
-                  {alertContent("secondary")}
-                </MDAlert>
-                <MDAlert color="success" dismissible>
-                  {alertContent("success")}
-                </MDAlert>
-                <MDAlert color="error" dismissible>
-                  {alertContent("error")}
-                </MDAlert>
-                <MDAlert color="warning" dismissible>
-                  {alertContent("warning")}
-                </MDAlert>
-                <MDAlert color="info" dismissible>
-                  {alertContent("info")}
-                </MDAlert>
-                <MDAlert color="light" dismissible>
-                  {alertContent("light")}
-                </MDAlert>
-                <MDAlert color="dark" dismissible>
-                  {alertContent("dark")}
-                </MDAlert>
-              </MDBox>
-            </Card>
-          </Grid>
+        <Card
+          sx={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            p: 3,
+            gap: 2,
+          }}
+        >
+          <MDBox sx={{ textAlign: 'center' }}>
+            <MDTypography variant="h3">Transferencias</MDTypography>
+          </MDBox>
 
-          <Grid item xs={12} lg={8}>
-            <Card>
-              <MDBox p={2} lineHeight={0}>
-                <MDTypography variant="h5">Notifications</MDTypography>
-                <MDTypography variant="button" color="text" fontWeight="regular">
-                  Notifications on this page use Toasts from Bootstrap. Read more details here.
-                </MDTypography>
-              </MDBox>
-              <MDBox p={2}>
-                <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <MDButton variant="gradient" color="success" onClick={openSuccessSB} fullWidth>
-                      success notification
-                    </MDButton>
-                    {renderSuccessSB}
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <MDButton variant="gradient" color="info" onClick={openInfoSB} fullWidth>
-                      info notification
-                    </MDButton>
-                    {renderInfoSB}
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <MDButton variant="gradient" color="warning" onClick={openWarningSB} fullWidth>
-                      warning notification
-                    </MDButton>
-                    {renderWarningSB}
-                  </Grid>
-                  <Grid item xs={12} sm={6} lg={3}>
-                    <MDButton variant="gradient" color="error" onClick={openErrorSB} fullWidth>
-                      error notification
-                    </MDButton>
-                    {renderErrorSB}
-                  </Grid>
-                </Grid>
-              </MDBox>
-            </Card>
-          </Grid>
-        </Grid>
+          <MDBox
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <TextField
+              id="transferencia"
+              label="Nro de transferencia"
+              variant="outlined"
+              sx={{ width: 250, height: 56 }}
+            />
+
+            <Button
+              variant="contained"
+              sx={{
+                width: 100,
+                height: 56,
+                bgcolor: 'darkblue',
+                '&:hover': { bgcolor: 'navy' },
+                color: '#FFFFFF',
+              }}
+            >
+              <SearchIcon sx={{ color: '#FFFFFF' }} fontSize="large" />
+            </Button>
+
+            <TextField
+              id="descripcion"
+              label="Descripción"
+              variant="outlined"
+              sx={{ flexGrow: 1, height: 56 }}
+            />
+          </MDBox>
+
+          <MDBox
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              alignItems: 'flex-start',
+            }}
+          >
+            <MDBox
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                width: 350,
+              }}
+            >
+              <FormControl fullWidth>
+                <InputLabel id="origen-label">
+                  Unidad de trabajo actual
+                </InputLabel>
+                <Select
+                  labelId="origen-label"
+                  label="Unidad de trabajo actual"
+                  sx={{ height: 56 }}
+                  open={openOrigen}
+                  onClose={() => setOpenOrigen(false)}
+                  onOpen={() => setOpenOrigen(true)}
+                  IconComponent={() =>
+                    openOrigen ? (
+                      <ArrowDropUpIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
+                    ) : (
+                      <ArrowDropDownIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
+                    )
+                  }
+                >
+                  <MenuItem value="almacen1">Almacén Principal</MenuItem>
+                  <MenuItem value="almacen2">Almacén Secundario</MenuItem>
+                  <MenuItem value="oficina">Oficina</MenuItem>
+                </Select>
+              </FormControl>
+
+              {/* Sección "Transferir a" */}
+              <MDTypography variant="h6" sx={{ textAlign: 'center', my: 1 }}>
+                Transferir a
+              </MDTypography>
+
+              <FormControl fullWidth>
+                <InputLabel id="unidad-destino-label">
+                  Unidad de trabajo destino
+                </InputLabel>
+                <Select
+                  labelId="unidad-destino-label"
+                  label="Unidad de trabajo destino"
+                  sx={{ height: 56 }}
+                  open={openUnidadDestino}
+                  onClose={() => setOpenUnidadDestino(false)}
+                  onOpen={() => setOpenUnidadDestino(true)}
+                  IconComponent={() =>
+                    openUnidadDestino ? (
+                      <ArrowDropUpIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
+                    ) : (
+                      <ArrowDropDownIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
+                    )
+                  }
+                >
+                  <MenuItem value="almacen1">Almacén Principal</MenuItem>
+                  <MenuItem value="almacen2">Almacén Secundario</MenuItem>
+                  <MenuItem value="oficina">Oficina</MenuItem>
+                </Select>
+              </FormControl>
+            </MDBox>
+
+            <MDBox
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                width: 350,
+              }}
+            >
+              <FormControl fullWidth>
+                <InputLabel id="destino-label">Ambiente actual</InputLabel>
+                <Select
+                  labelId="destino-label"
+                  label="Ambiente actual"
+                  sx={{ height: 56 }}
+                  open={openDestino}
+                  onClose={() => setOpenDestino(false)}
+                  onOpen={() => setOpenDestino(true)}
+                  IconComponent={() =>
+                    openDestino ? (
+                      <ArrowDropUpIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
+                    ) : (
+                      <ArrowDropDownIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
+                    )
+                  }
+                >
+                  <MenuItem value="almacen1">Almacén Principal</MenuItem>
+                  <MenuItem value="almacen2">Almacén Secundario</MenuItem>
+                  <MenuItem value="oficina">Oficina</MenuItem>
+                </Select>
+              </FormControl>
+
+              {/* Espacio para alinear con la sección "Transferir a" */}
+              <MDTypography
+                variant="h6"
+                sx={{ textAlign: 'center', my: 1, visibility: 'hidden' }}
+              >
+                Transferir a
+              </MDTypography>
+
+              <FormControl fullWidth>
+                <InputLabel id="ambiente-destino-label">
+                  Ambiente destino
+                </InputLabel>
+                <Select
+                  labelId="ambiente-destino-label"
+                  label="Ambiente destino"
+                  sx={{ height: 56 }}
+                  open={openAmbienteDestino}
+                  onClose={() => setOpenAmbienteDestino(false)}
+                  onOpen={() => setOpenAmbienteDestino(true)}
+                  IconComponent={() =>
+                    openAmbienteDestino ? (
+                      <ArrowDropUpIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
+                    ) : (
+                      <ArrowDropDownIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
+                    )
+                  }
+                >
+                  <MenuItem value="almacen1">Almacén Principal</MenuItem>
+                  <MenuItem value="almacen2">Almacén Secundario</MenuItem>
+                  <MenuItem value="oficina">Oficina</MenuItem>
+                </Select>
+              </FormControl>
+            </MDBox>
+
+            <MDBox
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                width: 350,
+              }}
+            >
+              <TextField
+                label="Fecha Transferencia"
+                variant="outlined"
+                sx={{ height: 56 }}
+                fullWidth
+                type="date"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+
+              <Box sx={{ display: 'flex', gap: 2 }}>
+                <Button
+                  variant="contained"
+                  sx={{
+                    flex: 1,
+                    bgcolor: 'darkblue',
+                    '&:hover': { bgcolor: 'navy' },
+                    color: '#FFFFFF',
+                    height: 56,
+                  }}
+                >
+                  Agregar
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{
+                    flex: 1,
+                    bgcolor: 'darkblue',
+                    '&:hover': { bgcolor: 'navy' },
+                    color: '#FFFFFF',
+                    height: 56,
+                  }}
+                >
+                  Guardar
+                </Button>
+              </Box>
+            </MDBox>
+          </MDBox>
+        </Card>
       </MDBox>
-      <Footer />
     </DashboardLayout>
   );
 }
 
-export default Notifications;
+export default Transferencias;
