@@ -8,7 +8,7 @@ workers_dev = true
 [build]
 command = "npm run build"
 upload_format = "modules"
-upload_dir = "./dist"
+upload_dir = "./build"
 
 [pages]
 pages_build_output_dir = "build"
