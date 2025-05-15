@@ -14,29 +14,29 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Grid from '@mui/material/Grid';
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
 // Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
-import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Footer from 'examples/Footer';
+import ReportsBarChart from 'examples/Charts/BarCharts/ReportsBarChart';
+import ReportsLineChart from 'examples/Charts/LineCharts/ReportsLineChart';
+import ComplexStatisticsCard from 'examples/Cards/StatisticsCards/ComplexStatisticsCard';
 
 // Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+import reportsBarChartData from 'layouts/dashboard/data/reportsBarChartData';
+import reportsLineChartData from 'layouts/dashboard/data/reportsLineChartData';
 
 // Dashboard components
-import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+import Projects from 'layouts/dashboard/components/Projects';
+import OrdersOverview from 'layouts/dashboard/components/OrdersOverview';
 
-import { useEffect, useState } from "react";
-import axiosInstance from "../../config/axiosConfig"; // Asegúrate de que la ruta sea correcta
+import { useEffect, useState } from 'react';
+import axiosInstance from '../../config/axiosConfig'; // Asegúrate de que la ruta sea correcta
 
 function Dashboard() {
   const [bienesData, setBienesData] = useState([]);
@@ -48,8 +48,8 @@ function Dashboard() {
   useEffect(() => {
     const fetchBienes = async () => {
       try {
-        const response = await axiosInstance.get("/api/bienes");
-        console.log("Bienes data:", response.data);
+        const response = await axiosInstance.get('/api/bienes');
+        console.log('Bienes data:', response.data);
         setBienesData(response.data);
 
         // Actualizar datos de los gráficos con la información de bienes
@@ -61,10 +61,10 @@ function Dashboard() {
             labels,
             datasets: [
               {
-                label: "Valores de Bienes",
+                label: 'Valores de Bienes',
                 data: values,
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                borderColor: "rgba(75, 192, 192, 1)",
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
               },
             ],
@@ -73,17 +73,17 @@ function Dashboard() {
             labels,
             datasets: [
               {
-                label: "Tareas relacionadas",
+                label: 'Tareas relacionadas',
                 data: values.map((v) => v / 2), // Ejemplo: datos derivados
-                backgroundColor: "rgba(153, 102, 255, 0.2)",
-                borderColor: "rgba(153, 102, 255, 1)",
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
                 borderWidth: 1,
               },
             ],
           },
         });
       } catch (error) {
-        console.error("Error fetching bienes data:", error);
+        console.error('Error fetching bienes data:', error);
       }
     };
 
@@ -103,9 +103,9 @@ function Dashboard() {
                 title="Bookings"
                 count={281}
                 percentage={{
-                  color: "success",
-                  amount: "+55%",
-                  label: "than lask week",
+                  color: 'success',
+                  amount: '+55%',
+                  label: 'than lask week',
                 }}
               />
             </MDBox>
@@ -117,9 +117,9 @@ function Dashboard() {
                 title="Today's Users"
                 count="2,300"
                 percentage={{
-                  color: "success",
-                  amount: "+3%",
-                  label: "than last month",
+                  color: 'success',
+                  amount: '+3%',
+                  label: 'than last month',
                 }}
               />
             </MDBox>
@@ -132,9 +132,9 @@ function Dashboard() {
                 title="Revenue"
                 count="34k"
                 percentage={{
-                  color: "success",
-                  amount: "+1%",
-                  label: "than yesterday",
+                  color: 'success',
+                  amount: '+1%',
+                  label: 'than yesterday',
                 }}
               />
             </MDBox>
@@ -147,9 +147,9 @@ function Dashboard() {
                 title="Followers"
                 count="+91"
                 percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "Just updated",
+                  color: 'success',
+                  amount: '',
+                  label: 'Just updated',
                 }}
               />
             </MDBox>

@@ -38,6 +38,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint": "eslint src/",
+    "lint-fix": "eslint src/ --fix",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,json,css,scss}\"",
+    "prettier-check": "prettier --check \"src/**/*.{js,jsx,json,css,scss}\"",
+    "prettier-fix": "prettier --write \"src/**/*.{js,jsx,json,css,scss}\"",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
   "eslintConfig": {

@@ -13,39 +13,43 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from 'react';
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 // @mui material components
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Icon from "@mui/material/Icon";
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Icon from '@mui/material/Icon';
 
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
+import MDBox from 'components/MDBox';
 
 // Material Dashboard 2 React example components
-import Sidenav from "examples/Sidenav";
+import Sidenav from 'examples/Sidenav';
 
 // Material Dashboard 2 React themes
-import theme from "assets/theme";
+import theme from 'assets/theme';
 
 // Material Dashboard 2 React Dark Mode themes
-import themeDark from "assets/theme-dark";
-import { CacheProvider } from "@emotion/react";
-import createCache from "@emotion/cache";
+import themeDark from 'assets/theme-dark';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
 // Material Dashboard 2 React routes
-import routes from "routes";
+import routes from 'routes';
 
 // Material Dashboard 2 React contexts
-import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
+import {
+  useMaterialUIController,
+  setMiniSidenav,
+  setOpenConfigurator,
+} from 'context';
 
 // Images
-import brandWhite from "assets/images/logos/alcaldia_favicon.png";
-import brandDark from "assets/images/logos/alcaldia_favicon.png";
+import brandWhite from 'assets/images/logos/alcaldia_favicon.png';
+import brandDark from 'assets/images/logos/alcaldia_favicon.png';
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -79,7 +83,8 @@ export default function App() {
   };
 
   // Change the openConfigurator state
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
+  const handleConfiguratorOpen = () =>
+    setOpenConfigurator(dispatch, !openConfigurator);
 
   // Nueva función para alternar el estado del sidenav
   const toggleSidenav = () => {
@@ -88,7 +93,7 @@ export default function App() {
 
   // Setting the dir attribute for the body element
   useEffect(() => {
-    document.body.setAttribute("dir", direction);
+    document.body.setAttribute('dir', direction);
   }, [direction]);
 
   // Setting page scroll to 0 when changing the route
@@ -104,7 +109,14 @@ export default function App() {
       }
 
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        return (
+          <Route
+            exact
+            path={route.route}
+            element={route.component}
+            key={route.key}
+          />
+        );
       }
 
       return null;
@@ -125,7 +137,7 @@ export default function App() {
       bottom="2rem"
       zIndex={99}
       color="dark"
-      sx={{ cursor: "pointer" }}
+      sx={{ cursor: 'pointer' }}
       onClick={handleConfiguratorOpen}
     >
       <Icon fontSize="small" color="inherit">
@@ -137,20 +149,20 @@ export default function App() {
   // Botón para alternar el sidenav
   const toggleSidenavButton = (
     <MDBox
-    display="flex"
-    justifyContent="center"
-    alignItems="center"
-    width="3.25rem"
-    height="3.25rem"
-    bgColor="white"
-    shadow="sm"
-    borderRadius="50%"
-    position="fixed"
-    right="2rem"
-    bottom="2rem"
-    zIndex={99}
-    color="dark"
-    sx={{ cursor: "pointer" }}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      width="3.25rem"
+      height="3.25rem"
+      bgColor="white"
+      shadow="sm"
+      borderRadius="50%"
+      position="fixed"
+      right="2rem"
+      bottom="2rem"
+      zIndex={99}
+      color="dark"
+      sx={{ cursor: 'pointer' }}
       onClick={toggleSidenav}
     >
       <Icon fontSize="small" color="inherit">
@@ -162,17 +174,20 @@ export default function App() {
   return (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
-      {layout === "dashboard" && (
+      {layout === 'dashboard' && (
         <>
           <Sidenav
             color={sidenavColor}
-            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brand={
+              (transparentSidenav && !darkMode) || whiteSidenav
+                ? brandDark
+                : brandWhite
+            }
             brandName="Gestor De Bienes"
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
-          
           {configsButton}
           {toggleSidenavButton} {/* Agregar el botón de alternar sidenav */}
         </>

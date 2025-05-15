@@ -36,85 +36,89 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
-import Notifications from "layouts/notifications";
-import Profile from "layouts/profile";
-import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
-import Reportes from "layouts/reportes";
+import Dashboard from 'layouts/dashboard';
+import Tables from 'layouts/tables';
+import Notifications from 'layouts/notifications';
+import Profile from 'layouts/profile';
+import SignIn from 'layouts/authentication/sign-in';
+import SignUp from 'layouts/authentication/sign-up';
+import Reportes from 'layouts/reportes';
 
 // @mui icons
-import Icon from "@mui/material/Icon";
+import Icon from '@mui/material/Icon';
 
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
-import BienesView from "layouts/Bienes";
+import BienesView from 'layouts/Bienes';
 
 const routes = [
   {
-    type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
+    type: 'collapse',
+    name: 'Dashboard',
+    key: 'dashboard',
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
+    route: '/dashboard',
     component: <Dashboard />,
   },
   {
-    type: "collapse",
-    name: "Bienes",
-    key: "bienes",
-    icon: <Icon fontSize="small"><AddBusinessIcon/></Icon>,
-    route: "/bienes",
-    component: <BienesView />
+    type: 'collapse',
+    name: 'Bienes',
+    key: 'bienes',
+    icon: (
+      <Icon fontSize="small">
+        <AddBusinessIcon />
+      </Icon>
+    ),
+    route: '/bienes',
+    component: <BienesView />,
   },
   {
-    type: "collapse", 
-    name: "Reportes",
-    key: "reportes",
+    type: 'collapse',
+    name: 'Reportes',
+    key: 'reportes',
     icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/reportes",
-    component: <Reportes />
+    route: '/reportes',
+    component: <Reportes />,
   },
   {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
+    type: 'collapse',
+    name: 'Tables',
+    key: 'tables',
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
+    route: '/tables',
     component: <Tables />,
   },
   {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
+    type: 'collapse',
+    name: 'Notifications',
+    key: 'notifications',
     icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
+    route: '/notifications',
     component: <Notifications />,
   },
   {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
+    type: 'collapse',
+    name: 'Profile',
+    key: 'profile',
     icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
+    route: '/profile',
     component: <Profile />,
   },
   {
-    type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
+    type: 'collapse',
+    name: 'Sign In',
+    key: 'sign-in',
     icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
+    route: '/authentication/sign-in',
     component: <SignIn />,
   },
   {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
+    type: 'collapse',
+    name: 'Sign Up',
+    key: 'sign-up',
     icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
+    route: '/authentication/sign-up',
     component: <SignUp />,
-  }
+  },
 ];
 
 export default routes;

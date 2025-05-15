@@ -4,23 +4,23 @@
 =========================================================
 */
 
-import { useState } from "react";
-import Card from "@mui/material/Card";
-import { 
-  Button, 
-  TextField, 
-  Box, 
-  FormControl, 
-  InputLabel, 
-  MenuItem, 
-  Select
-} from "@mui/material";
+import { useState } from 'react';
+import Card from '@mui/material/Card';
+import {
+  Button,
+  TextField,
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
 
 function Transferencias() {
   const [openOrigen, setOpenOrigen] = useState(false);
@@ -31,61 +31,76 @@ function Transferencias() {
   return (
     <DashboardLayout>
       <MDBox mt={6} mb={3}>
-        <Card sx={{ 
-          height: "100%", 
-          display: "flex", 
-          flexDirection: "column", 
-          p: 3,
-          gap: 2
-        }}>
-          <MDBox sx={{ textAlign: "center" }}>
+        <Card
+          sx={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            p: 3,
+            gap: 2,
+          }}
+        >
+          <MDBox sx={{ textAlign: 'center' }}>
             <MDTypography variant="h3">Transferencias</MDTypography>
           </MDBox>
-          
-          <MDBox sx={{ 
-            display: "flex", 
-            flexDirection: "row", 
-            gap: 2,
-            alignItems: "center",
-            justifyContent: "space-between"
-          }}>
-            <TextField 
-              id="transferencia" 
-              label="Nro de transferencia" 
-              variant="outlined" 
-              sx={{ width: 250, height: 56 }} 
+
+          <MDBox
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <TextField
+              id="transferencia"
+              label="Nro de transferencia"
+              variant="outlined"
+              sx={{ width: 250, height: 56 }}
             />
-            
-            <Button 
-              variant="contained" 
-              sx={{ 
-                width: 100, 
-                height: 56, 
-                bgcolor: "darkblue", 
-                "&:hover": { bgcolor: "navy" },
-                color: "#FFFFFF"
+
+            <Button
+              variant="contained"
+              sx={{
+                width: 100,
+                height: 56,
+                bgcolor: 'darkblue',
+                '&:hover': { bgcolor: 'navy' },
+                color: '#FFFFFF',
               }}
             >
-              <SearchIcon sx={{ color: "#FFFFFF" }} fontSize="large" />
+              <SearchIcon sx={{ color: '#FFFFFF' }} fontSize="large" />
             </Button>
-            
-            <TextField 
-              id="descripcion" 
-              label="Descripción" 
-              variant="outlined" 
-              sx={{ flexGrow: 1, height: 56 }} 
+
+            <TextField
+              id="descripcion"
+              label="Descripción"
+              variant="outlined"
+              sx={{ flexGrow: 1, height: 56 }}
             />
           </MDBox>
 
-          <MDBox sx={{ 
-            display: "flex", 
-            flexDirection: "row", 
-            gap: 2,
-            alignItems: "flex-start"
-          }}>
-            <MDBox sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 350 }}>
+          <MDBox
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: 2,
+              alignItems: 'flex-start',
+            }}
+          >
+            <MDBox
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                width: 350,
+              }}
+            >
               <FormControl fullWidth>
-                <InputLabel id="origen-label">Unidad de trabajo actual</InputLabel>
+                <InputLabel id="origen-label">
+                  Unidad de trabajo actual
+                </InputLabel>
                 <Select
                   labelId="origen-label"
                   label="Unidad de trabajo actual"
@@ -93,11 +108,15 @@ function Transferencias() {
                   open={openOrigen}
                   onClose={() => setOpenOrigen(false)}
                   onOpen={() => setOpenOrigen(true)}
-                  IconComponent={() => 
+                  IconComponent={() =>
                     openOrigen ? (
-                      <ArrowDropUpIcon sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }} />
+                      <ArrowDropUpIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
                     ) : (
-                      <ArrowDropDownIcon sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }} />
+                      <ArrowDropDownIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
                     )
                   }
                 >
@@ -108,10 +127,14 @@ function Transferencias() {
               </FormControl>
 
               {/* Sección "Transferir a" */}
-              <MDTypography variant="h6" sx={{ textAlign: 'center', my: 1 }}>Transferir a</MDTypography>
-              
+              <MDTypography variant="h6" sx={{ textAlign: 'center', my: 1 }}>
+                Transferir a
+              </MDTypography>
+
               <FormControl fullWidth>
-                <InputLabel id="unidad-destino-label">Unidad de trabajo destino</InputLabel>
+                <InputLabel id="unidad-destino-label">
+                  Unidad de trabajo destino
+                </InputLabel>
                 <Select
                   labelId="unidad-destino-label"
                   label="Unidad de trabajo destino"
@@ -119,11 +142,15 @@ function Transferencias() {
                   open={openUnidadDestino}
                   onClose={() => setOpenUnidadDestino(false)}
                   onOpen={() => setOpenUnidadDestino(true)}
-                  IconComponent={() => 
+                  IconComponent={() =>
                     openUnidadDestino ? (
-                      <ArrowDropUpIcon sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }} />
+                      <ArrowDropUpIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
                     ) : (
-                      <ArrowDropDownIcon sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }} />
+                      <ArrowDropDownIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
                     )
                   }
                 >
@@ -134,7 +161,14 @@ function Transferencias() {
               </FormControl>
             </MDBox>
 
-            <MDBox sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 350 }}>
+            <MDBox
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                width: 350,
+              }}
+            >
               <FormControl fullWidth>
                 <InputLabel id="destino-label">Ambiente actual</InputLabel>
                 <Select
@@ -144,11 +178,15 @@ function Transferencias() {
                   open={openDestino}
                   onClose={() => setOpenDestino(false)}
                   onOpen={() => setOpenDestino(true)}
-                  IconComponent={() => 
+                  IconComponent={() =>
                     openDestino ? (
-                      <ArrowDropUpIcon sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }} />
+                      <ArrowDropUpIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
                     ) : (
-                      <ArrowDropDownIcon sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }} />
+                      <ArrowDropDownIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
                     )
                   }
                 >
@@ -159,10 +197,17 @@ function Transferencias() {
               </FormControl>
 
               {/* Espacio para alinear con la sección "Transferir a" */}
-              <MDTypography variant="h6" sx={{ textAlign: 'center', my: 1, visibility: 'hidden' }}>Transferir a</MDTypography>
-              
+              <MDTypography
+                variant="h6"
+                sx={{ textAlign: 'center', my: 1, visibility: 'hidden' }}
+              >
+                Transferir a
+              </MDTypography>
+
               <FormControl fullWidth>
-                <InputLabel id="ambiente-destino-label">Ambiente destino</InputLabel>
+                <InputLabel id="ambiente-destino-label">
+                  Ambiente destino
+                </InputLabel>
                 <Select
                   labelId="ambiente-destino-label"
                   label="Ambiente destino"
@@ -170,11 +215,15 @@ function Transferencias() {
                   open={openAmbienteDestino}
                   onClose={() => setOpenAmbienteDestino(false)}
                   onOpen={() => setOpenAmbienteDestino(true)}
-                  IconComponent={() => 
+                  IconComponent={() =>
                     openAmbienteDestino ? (
-                      <ArrowDropUpIcon sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }} />
+                      <ArrowDropUpIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
                     ) : (
-                      <ArrowDropDownIcon sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }} />
+                      <ArrowDropDownIcon
+                        sx={{ color: 'text.primary', mr: 3, fontSize: '2rem' }}
+                      />
                     )
                   }
                 >
@@ -185,9 +234,16 @@ function Transferencias() {
               </FormControl>
             </MDBox>
 
-            <MDBox sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: 350 }}>
-              <TextField 
-                label="Fecha Transferencia" 
+            <MDBox
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                width: 350,
+              }}
+            >
+              <TextField
+                label="Fecha Transferencia"
                 variant="outlined"
                 sx={{ height: 56 }}
                 fullWidth
@@ -198,26 +254,26 @@ function Transferencias() {
               />
 
               <Box sx={{ display: 'flex', gap: 2 }}>
-                <Button 
+                <Button
                   variant="contained"
-                  sx={{ 
+                  sx={{
                     flex: 1,
-                    bgcolor: "darkblue", 
-                    "&:hover": { bgcolor: "navy" },
-                    color: "#FFFFFF",
-                    height: 56
+                    bgcolor: 'darkblue',
+                    '&:hover': { bgcolor: 'navy' },
+                    color: '#FFFFFF',
+                    height: 56,
                   }}
                 >
                   Agregar
                 </Button>
-                <Button 
+                <Button
                   variant="contained"
-                  sx={{ 
+                  sx={{
                     flex: 1,
-                    bgcolor: "darkblue", 
-                    "&:hover": { bgcolor: "navy" },
-                    color: "#FFFFFF",
-                    height: 56
+                    bgcolor: 'darkblue',
+                    '&:hover': { bgcolor: 'navy' },
+                    color: '#FFFFFF',
+                    height: 56,
                   }}
                 >
                   Guardar

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Card,
   Box,
@@ -9,33 +9,33 @@ import {
   MenuItem,
   Button,
   Grid,
-  Divider
-} from "@mui/material";
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDButton from "components/MDButton";
+  Divider,
+} from '@mui/material';
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import MDBox from 'components/MDBox';
+import MDTypography from 'components/MDTypography';
+import MDButton from 'components/MDButton';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-
+import TextField from '@mui/material';
 function Reportes() {
-  const [reportType, setReportType] = useState("");
-  const [format, setFormat] = useState("");
+  const [reportType, setReportType] = useState('');
+  const [format, setFormat] = useState('');
 
   const reportOptions = [
-    { value: "inventario", label: "Reporte de Inventario" },
-    { value: "ventas", label: "Reporte de Ventas" },
-    { value: "compras", label: "Reporte de Compras" },
-    { value: "transferencias", label: "Reporte de Transferencias" },
-    { value: "usuarios", label: "Reporte de Usuarios" },
+    { value: 'inventario', label: 'Reporte de Inventario' },
+    { value: 'ventas', label: 'Reporte de Ventas' },
+    { value: 'compras', label: 'Reporte de Compras' },
+    { value: 'transferencias', label: 'Reporte de Transferencias' },
+    { value: 'usuarios', label: 'Reporte de Usuarios' },
   ];
 
   const formatOptions = [
-    { value: "pdf", label: "PDF", icon: <PictureAsPdfIcon /> },
-    { value: "excel", label: "Excel", icon: <InsertDriveFileIcon /> },
-    { value: "csv", label: "CSV", icon: <DescriptionIcon /> },
+    { value: 'pdf', label: 'PDF', icon: <PictureAsPdfIcon /> },
+    { value: 'excel', label: 'Excel', icon: <InsertDriveFileIcon /> },
+    { value: 'csv', label: 'CSV', icon: <DescriptionIcon /> },
   ];
 
   return (
@@ -59,14 +59,16 @@ function Reportes() {
               </MDTypography>
             </MDBox>
           </Grid>
-          
+
           <Grid item xs={12}>
             <Card sx={{ p: 3 }}>
               <Grid container spacing={3}>
                 {/* Selección de tipo de reporte */}
                 <Grid item xs={12} md={6}>
                   <FormControl fullWidth>
-                    <InputLabel id="report-type-label">Tipo de Reporte</InputLabel>
+                    <InputLabel id="report-type-label">
+                      Tipo de Reporte
+                    </InputLabel>
                     <Select
                       labelId="report-type-label"
                       value={reportType}
@@ -172,12 +174,12 @@ function Reportes() {
                 <Box
                   sx={{
                     minHeight: 300,
-                    border: "1px dashed #ccc",
+                    border: '1px dashed #ccc',
                     borderRadius: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "#f9f9f9"
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#f9f9f9',
                   }}
                 >
                   <Typography color="textSecondary">
