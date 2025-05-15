@@ -35,8 +35,60 @@ import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
+import { useEffect, useState } from "react";
+import axiosInstance from "../../config/axiosConfig"; // Asegúrate de que la ruta sea correcta
+
 function Dashboard() {
-  const { sales, tasks } = reportsLineChartData;
+  const [bienesData, setBienesData] = useState([]);
+  const [chartData, setChartData] = useState({
+    sales: { labels: [], datasets: [] },
+    tasks: { labels: [], datasets: [] },
+  });
+
+  useEffect(() => {
+    const fetchBienes = async () => {
+      try {
+        const response = await axiosInstance.get("/api/bienes");
+        console.log("Bienes data:", response.data);
+        setBienesData(response.data);
+
+        // Actualizar datos de los gráficos con la información de bienes
+        const labels = response.data.map((item) => item.nombre); // Ejemplo: nombres de bienes
+        const values = response.data.map((item) => item.valor); // Ejemplo: valores de bienes
+
+        setChartData({
+          sales: {
+            labels,
+            datasets: [
+              {
+                label: "Valores de Bienes",
+                data: values,
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          tasks: {
+            labels,
+            datasets: [
+              {
+                label: "Tareas relacionadas",
+                data: values.map((v) => v / 2), // Ejemplo: datos derivados
+                backgroundColor: "rgba(153, 102, 255, 0.2)",
+                borderColor: "rgba(153, 102, 255, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+        });
+      } catch (error) {
+        console.error("Error fetching bienes data:", error);
+      }
+    };
+
+    fetchBienes();
+  }, []);
 
   return (
     <DashboardLayout>
@@ -109,10 +161,10 @@ function Dashboard() {
               <MDBox mb={3}>
                 <ReportsBarChart
                   color="info"
-                  title="website views"
-                  description="Last Campaign Performance"
-                  date="campaign sent 2 days ago"
-                  chart={reportsBarChartData}
+                  title="Valores de Bienes"
+                  description="Información obtenida de bienes"
+                  date="actualizado recientemente"
+                  chart={chartData.sales}
                 />
               </MDBox>
             </Grid>
@@ -120,14 +172,10 @@ function Dashboard() {
               <MDBox mb={3}>
                 <ReportsLineChart
                   color="success"
-                  title="daily sales"
-                  description={
-                    <>
-                      (<strong>+15%</strong>) increase in today sales.
-                    </>
-                  }
-                  date="updated 4 min ago"
-                  chart={sales}
+                  title="Tareas relacionadas"
+                  description="Datos derivados de bienes"
+                  date="actualizado recientemente"
+                  chart={chartData.tasks}
                 />
               </MDBox>
             </Grid>
@@ -138,7 +186,7 @@ function Dashboard() {
                   title="completed tasks"
                   description="Last Campaign Performance"
                   date="just updated"
-                  chart={tasks}
+                  chart={reportsLineChartData.tasks}
                 />
               </MDBox>
             </Grid>

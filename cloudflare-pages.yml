@@ -1,0 +1,17 @@
+# Configuración para Cloudflare Pages
+
+# Ruta del directorio de salida después de compilar el proyecto
+build:
+  command: npm run build
+  directory: dist
+
+# Configuración de entorno
+environment:
+  NODE_VERSION: 18
+  NPM_VERSION: 9
+
+# Configuración de rutas
+routes:
+  - source: /api/*
+    destination: https://api.example.com/:splat
+    status: 200
