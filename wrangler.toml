@@ -10,6 +10,9 @@ command = "npm run build"
 upload_format = "modules"
 upload_dir = "./dist"
 
+[pages]
+pages_build_output_dir = "build"
+
 [env.production]
 route = "gestor-bienes.example.com/*"
 zone_id = "tu_zone_id"

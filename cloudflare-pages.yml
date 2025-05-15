@@ -3,7 +3,7 @@
 # Ruta del directorio de salida después de compilar el proyecto
 build:
   command: npm run build
-  directory: dist
+  directory: build # Cambia a "dist" si ese es el directorio correcto
 
 # Configuración de entorno
 environment:
