@@ -1,5 +1,6 @@
 import Card from '@mui/material/Card';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axiosInstance from '../../config/axiosConfig';
 import {
   Button,
   TextField,
@@ -29,6 +30,19 @@ import CloseIcon from '@mui/icons-material/Close';
 
 function BienesView() {
   const [unidadTrabajo, setUnidadTrabajo] = useState('');
+  const [unidadTrabajoOptions, setUnidadTrabajoOptions] = useState([
+    'Administración',
+    'Producción',
+    'Logística',
+    'Control de calidad',
+    'Mantenimiento',
+  ]);
+  const [unidadTrabajoSelected, setUnidadTrabajoSelected] = useState('');
+  const [unidadTrabajoOpen, setUnidadTrabajoOpen] = useState(false);
+  const [unidadTrabajoLoading, setUnidadTrabajoLoading] = useState(false);
+  const [unidadTrabajoError, setUnidadTrabajoError] = useState(false);
+  const [descripcion, setDescripcion] = useState('');
+  const [descripcionError, setDescripcionError] = useState(false);
   const [ambiente, setAmbiente] = useState('');
   const [seccion, setSeccion] = useState('');
   const [subgrupo, setSubgrupo] = useState('');
@@ -40,10 +54,36 @@ function BienesView() {
   const [openSubgrupo, setOpenSubgrupo] = useState(false);
   const [openZoom, setOpenZoom] = useState(false);
   const [zoomedImage, setZoomedImage] = useState('');
+  const [bienId, setBienId] = useState('');
+  const [bienData, setBienData] = useState(null);
   const fileInputRef = useRef(null);
 
-  const handleUnidadTrabajoChange = (event) =>
-    setUnidadTrabajo(event.target.value);
+  const updateStatesFromBienData = () => {
+    if(!bienData) {
+      setUnidadTrabajo(bienData?.unidadTrabajo || '');
+      setDescripcion(bienData?.descripcion || '');
+      setAmbiente(bienData?.ambiente || '');
+      setSeccion(bienData?.seccion || '');
+      setSubgrupo(bienData?.subgrupo || '');
+      setImages(bienData?.imagenes || []);
+  }
+};
+
+  console.log(bienData)
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      alert('Usuario no autenticado. Por favor, inicie sesión.');
+      return;
+    }
+  }, []);
+
+  useEffect(() => {
+    updateStatesFromBienData();
+  }, [bienData]);
+
+  const handleUnidadTrabajoChange = (event) => setUnidadTrabajo(event.target.value);
   const handleAmbienteChange = (event) => setAmbiente(event.target.value);
   const handleSeccionChange = (event) => setSeccion(event.target.value);
   const handleSubgrupoChange = (event) => setSubgrupo(event.target.value);
@@ -95,6 +135,21 @@ function BienesView() {
 
   const handleCloseZoom = () => {
     setOpenZoom(false);
+  };
+
+  const handleSearchBien = async () => {
+    if (!bienId) {
+      alert('Por favor, ingrese un número de bien.');
+    }
+
+    try {
+      const response = await axiosInstance.get(`http://127.0.0.1:8000/api/bienes/${bienId}/`);
+      print(response.data)
+      setBienData(response.data);
+    } catch (error) {
+      console.error('Error al buscar el bien:', error);
+      alert('No se pudo obtener la información del bien. Verifique el ID.');
+    }
   };
 
   const renderCarouselContent = () => {
@@ -248,6 +303,8 @@ function BienesView() {
             label="Nro de bien"
             variant="outlined"
             sx={{ width: 250, height: 56 }}
+            value={bienId}
+            onChange={(e) => setBienId(e.target.value)}
           />
 
           <Button
@@ -260,6 +317,7 @@ function BienesView() {
               '&:hover': { bgcolor: 'navy' },
               color: '#FFFFFF',
             }}
+            onClick={handleSearchBien}
           >
             <SearchIcon sx={{ color: '#FFFFFF' }} fontSize="large" />
           </Button>
@@ -269,6 +327,10 @@ function BienesView() {
             label="Descripción"
             variant="outlined"
             sx={{ flexGrow: 1, height: 56 }}
+            value={descripcion || ''}
+            onChange={(e) =>
+              setBienData((prev) => ({ ...prev, descripcion: e.target.value }))
+            }
           />
         </Box>
 

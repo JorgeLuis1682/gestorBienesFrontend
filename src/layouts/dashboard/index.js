@@ -36,14 +36,23 @@ import Projects from 'layouts/dashboard/components/Projects';
 import OrdersOverview from 'layouts/dashboard/components/OrdersOverview';
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../config/axiosConfig'; // Asegúrate de que la ruta sea correcta
 
 function Dashboard() {
+  const navigate = useNavigate();
   const [bienesData, setBienesData] = useState([]);
   const [chartData, setChartData] = useState({
     sales: { labels: [], datasets: [] },
     tasks: { labels: [], datasets: [] },
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      navigate('/authentication/sign-in');
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const fetchBienes = async () => {
@@ -112,7 +121,7 @@ function Dashboard() {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
+              {/* <ComplexStatisticsCard
                 icon="leaderboard"
                 title="Today's Users"
                 count="2,300"
@@ -121,12 +130,12 @@ function Dashboard() {
                   amount: '+3%',
                   label: 'than last month',
                 }}
-              />
+              /> */}
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
+              {/* <ComplexStatisticsCard
                 color="success"
                 icon="store"
                 title="Revenue"
@@ -136,12 +145,12 @@ function Dashboard() {
                   amount: '+1%',
                   label: 'than yesterday',
                 }}
-              />
+              /> */}
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
+              {/* <ComplexStatisticsCard
                 color="primary"
                 icon="person_add"
                 title="Followers"
@@ -151,7 +160,7 @@ function Dashboard() {
                   amount: '',
                   label: 'Just updated',
                 }}
-              />
+              /> */}
             </MDBox>
           </Grid>
         </Grid>
@@ -159,35 +168,35 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsBarChart
+                {/* <ReportsBarChart
                   color="info"
                   title="Valores de Bienes"
                   description="Información obtenida de bienes"
                   date="actualizado recientemente"
                   chart={chartData.sales}
-                />
+                /> */}
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsLineChart
+                {/* <ReportsLineChart
                   color="success"
                   title="Tareas relacionadas"
                   description="Datos derivados de bienes"
                   date="actualizado recientemente"
                   chart={chartData.tasks}
-                />
+                /> */}
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mb={3}>
-                <ReportsLineChart
+                {/* <ReportsLineChart
                   color="dark"
                   title="completed tasks"
                   description="Last Campaign Performance"
                   date="just updated"
                   chart={reportsLineChartData.tasks}
-                />
+                /> */}
               </MDBox>
             </Grid>
           </Grid>
@@ -195,10 +204,10 @@ function Dashboard() {
         <MDBox>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={8}>
-              <Projects />
+              {/* <Projects /> */}
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
+              {/* <OrdersOverview /> */}
             </Grid>
           </Grid>
         </MDBox>

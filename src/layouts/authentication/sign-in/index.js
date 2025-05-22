@@ -13,7 +13,7 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from 'config/axiosConfig';
 
@@ -44,7 +44,7 @@ import MDButton from 'components/MDButton';
 import BasicLayout from 'layouts/authentication/components/BasicLayout';
 
 // Config
-import config from 'config';
+import config from '../../../config/environment';
 
 // Images
 import bgImage from 'assets/images/bg-sign-in-basic.jpeg';
@@ -61,6 +61,13 @@ function Basic() {
     message: '',
     severity: 'success',
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      navigate('/authentication/sign-in');
+    }
+  }, [navigate]);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -80,26 +87,24 @@ function Basic() {
     try {
       const loginUrl = `${config.apiUrl}/user/login/`.replace(/\/+$/, '/');
       console.log('URL completa:', loginUrl);
-      console.log('Datos enviados:', JSON.stringify(formData));
 
       const response = await axiosInstance.post(loginUrl, formData);
 
       console.log('Login successful:', response.data);
 
       // Guardar los tokens en localStorage
-      if (response.data.access_token) {
-        localStorage.setItem('access_token', response.data.access_token);
+      if (response.data.tokens.access) {
+        localStorage.setItem('access_token', response.data.tokens.access);
       }
-      if (response.data.refresh_token) {
-        localStorage.setItem('refresh_token', response.data.refresh_token);
-      }
-
+      
       // Show success notification
       setNotification({
         open: true,
         message: '¡Inicio de sesión exitoso!',
         severity: 'success',
       });
+
+
 
       // Redirect to dashboard after successful login
       setTimeout(() => {
